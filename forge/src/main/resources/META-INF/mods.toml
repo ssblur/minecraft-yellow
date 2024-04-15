@@ -1,0 +1,35 @@
+modLoader = "javafml"
+loaderVersion = "[47,)"
+#issueTrackerURL = ""
+license = "CC0"
+
+[[mods]]
+modId = "minecraftyellow"
+version = "${version}"
+displayName = "Minecraft Yellow"
+authors = "SSBlur"
+description = '''
+Minecraft meets the wild west!
+'''
+#logoFile = ""
+
+[[dependencies.minecraftyellow]]
+modId = "forge"
+mandatory = true
+versionRange = "[47,)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.minecraftyellow]]
+modId = "minecraft"
+mandatory = true
+versionRange = "[1.20.1,)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.minecraftyellow]]
+modId = "architectury"
+mandatory = true
+versionRange = "[9.1.12,)"
+ordering = "AFTER"
+side = "BOTH"

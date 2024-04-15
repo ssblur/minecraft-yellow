@@ -1,0 +1,31 @@
+{
+  "schemaVersion": 1,
+  "id": "minecraftyellow",
+  "version": "${version}",
+  "name": "Minecraft Yellow",
+  "description": "Minecraft meets the wild west!",
+  "authors": [
+  "SSBlur"
+  ],
+  "contact": {
+  "homepage": "https://fabricmc.net/",
+  "sources": "https://github.com/FabricMC/fabric-example-mod"
+  },
+  "license": "CC0",
+  "icon": "assets/minecraftyellow/icon.png",
+  "environment": "*",
+  "entrypoints": {
+  "main": [
+    "com.ssblur.minecraftyellow.fabric.MinecraftYellowFabric"
+  ]
+  },
+  "mixins": [
+  "minecraftyellow.mixins.json",
+  "minecraftyellow-common.mixins.json"
+  ],
+  "depends": {
+  "fabric": "*",
+  "minecraft": ">=1.20.1",
+  "architectury": ">=9.1.12"
+  }
+}
