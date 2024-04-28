@@ -25,6 +25,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 import java.util.function.Predicate;
+import java.util.function.Supplier;
 
 public class BaseGun extends Item {
   public static final Random RANDOM = new Random();
@@ -48,6 +49,12 @@ public class BaseGun extends Item {
 
   public BaseGun withAmmo(Item item) {
     this.ammoPredicate = i -> i.getItem() == item;
+
+    return this;
+  }
+
+  public BaseGun withAmmo(Supplier<Item> itemProvider) {
+    this.ammoPredicate = i -> i.getItem() == itemProvider.get();
 
     return this;
   }

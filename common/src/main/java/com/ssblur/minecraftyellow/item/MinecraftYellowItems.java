@@ -13,6 +13,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 
+@SuppressWarnings("ALL")
 public class MinecraftYellowItems {
   public static final String MOD_ID = MinecraftYellow.MOD_ID;
   public static final DeferredRegister<CreativeModeTab> TABS = DeferredRegister.create(MOD_ID, Registries.CREATIVE_MODE_TAB);
@@ -21,17 +22,20 @@ public class MinecraftYellowItems {
       () -> new ItemStack(MinecraftYellowItems.TOY_GUN.get())));
 
   public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(MOD_ID, Registries.ITEM);
+
   public static final RegistrySupplier<Item> TOY_GUN = ITEMS.register("toy_gun", () ->
     new BaseGun(new Item.Properties().arch$tab(MinecraftYellowItems.TAB), 1, 6)
       .withSounds(MinecraftYellowSounds.GUN_CAP_POP.get()));
+  public static final RegistrySupplier<Item> BULLET = ITEMS.register("bullet", () ->
+    new Item(new Item.Properties().arch$tab(MinecraftYellowItems.TAB)));
   public static final RegistrySupplier<Item> WILD_REVOLVER = ITEMS.register("wild_revolver", () ->
     new BaseGun(new Item.Properties().arch$tab(MinecraftYellowItems.TAB), 8, 6)
       .withSounds(MinecraftYellowSounds.GUN_BLAST.get())
-      .withAmmo(Items.ARROW));
+      .withAmmo(BULLET));
   public static final RegistrySupplier<Item> GOLDEN_GUN = ITEMS.register("golden_gun", () ->
     new BaseGun(new Item.Properties().arch$tab(MinecraftYellowItems.TAB), 20, 6)
       .withSounds(MinecraftYellowSounds.GUN_BLAST.get())
-      .withAmmo(Items.ARROW));
+      .withAmmo(BULLET));
 
   public static void register() {
     ITEMS.register();
