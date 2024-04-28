@@ -1,7 +1,13 @@
 package com.ssblur.minecraftyellow.item.gun;
 
+import com.ssblur.minecraftyellow.event.network.MinecraftYellowNetwork;
+import com.ssblur.minecraftyellow.event.network.ParticleNetwork;
 import com.ssblur.minecraftyellow.event.network.TraceNetwork;
 import com.ssblur.minecraftyellow.sound.MinecraftYellowSounds;
+import net.minecraft.client.particle.SmokeParticle;
+import net.minecraft.core.particles.DustParticleOptions;
+import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
@@ -57,7 +63,7 @@ public class BaseGun extends Item {
 
   @Override
   public int getBarWidth(ItemStack itemStack) {
-    if(itemStack.hasTag()) {
+    if(itemStack.getTag() != null) {
       int ammo = itemStack.getTag().getInt("ammo");
       return Math.round(13.0F * (((float) ammo)/((float) this.ammo)));
     }
@@ -106,7 +112,7 @@ public class BaseGun extends Item {
 
         if(tag.getInt("ammo") > 0) {
           TraceNetwork.requestTraceData(player, (type, result) -> {
-            if (type == TraceNetwork.TYPE.ENTITY) {
+            if (type == TraceNetwork.TYPE.ENTITY && result != null && result.right().isPresent()) {
               var entity = result.right().get();
               entity.hurt(level.damageSources().playerAttack(player), damage);
             }
@@ -114,6 +120,10 @@ public class BaseGun extends Item {
 
           if (sounds.size() > 0)
             level.playSound(null, player.blockPosition().above(), sounds.get(RANDOM.nextInt(sounds.size())), SoundSource.PLAYERS);
+
+          var ang = player.getLookAngle();
+          var pos = ang.normalize().scale(0.6d).add(player.blockPosition().above().getCenter());
+          ParticleNetwork.sendSmokeParticles((ServerLevel) level, pos);
 
           tag.putInt("ammo", tag.getInt("ammo") - 1);
           player.getCooldowns().addCooldown(this, 15);
