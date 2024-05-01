@@ -1,17 +1,21 @@
 package com.ssblur.minecraftyellow.item;
 
 import com.ssblur.minecraftyellow.MinecraftYellow;
+import com.ssblur.minecraftyellow.item.armor.Bandana;
+import com.ssblur.minecraftyellow.item.armor.YellowArmorColors;
+import com.ssblur.minecraftyellow.item.armor.YellowArmorMaterials;
 import com.ssblur.minecraftyellow.item.gun.BaseGun;
 import com.ssblur.minecraftyellow.sound.MinecraftYellowSounds;
+import dev.architectury.platform.Platform;
 import dev.architectury.registry.CreativeTabRegistry;
+import dev.architectury.registry.client.rendering.ColorHandlerRegistry;
 import dev.architectury.registry.registries.DeferredRegister;
 import dev.architectury.registry.registries.RegistrySupplier;
+import net.fabricmc.api.EnvType;
+import net.minecraft.client.color.item.ItemColors;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
-import net.minecraft.world.item.CreativeModeTab;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
+import net.minecraft.world.item.*;
 
 @SuppressWarnings("ALL")
 public class MinecraftYellowItems {
@@ -37,8 +41,15 @@ public class MinecraftYellowItems {
       .withSounds(MinecraftYellowSounds.GUN_BLAST.get())
       .withAmmo(BULLET));
 
+  public static final RegistrySupplier<Item> BANDANA = ITEMS.register("bandana", () ->
+    new Bandana(YellowArmorMaterials.CLOTH, ArmorItem.Type.CHESTPLATE, new Item.Properties().arch$tab(MinecraftYellowItems.TAB)));
+
   public static void register() {
     ITEMS.register();
     TABS.register();
+
+    if(Platform.getEnv() == EnvType.CLIENT) {
+      ColorHandlerRegistry.registerItemColors(new YellowArmorColors(), BANDANA);
+    }
   }
 }
