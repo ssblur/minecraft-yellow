@@ -87,7 +87,6 @@ public class SaloonDoor extends Block implements EntityBlock {
 
     var otherHalf = blockState.getValue(HALF) ? Direction.DOWN : Direction.UP;
     if(!level.getBlockState(pos.offset(otherHalf.getNormal())).is(this)) {
-      System.out.println(pos.offset(otherHalf.getNormal()));
       level.setBlockAndUpdate(pos, Blocks.AIR.defaultBlockState());
       return;
     }
