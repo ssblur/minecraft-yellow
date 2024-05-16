@@ -1,6 +1,7 @@
 package com.ssblur.minecraftyellow.item;
 
 import com.ssblur.minecraftyellow.MinecraftYellow;
+import com.ssblur.minecraftyellow.block.MinecraftYellowBlocks;
 import com.ssblur.minecraftyellow.item.armor.Bandana;
 import com.ssblur.minecraftyellow.item.armor.YellowArmorColors;
 import com.ssblur.minecraftyellow.item.armor.YellowArmorMaterials;
@@ -43,6 +44,10 @@ public class MinecraftYellowItems {
 
   public static final RegistrySupplier<Item> BANDANA = ITEMS.register("bandana", () ->
     new Bandana(YellowArmorMaterials.CLOTH, ArmorItem.Type.CHESTPLATE, new Item.Properties().arch$tab(MinecraftYellowItems.TAB)));
+
+
+  public static final RegistrySupplier<Item> SALOON_DOOR = ITEMS.register("saloon_door", () ->
+    new BlockItem(MinecraftYellowBlocks.SALOON_DOOR.get(), new Item.Properties().arch$tab(MinecraftYellowItems.TAB)));
 
   public static void register() {
     ITEMS.register();

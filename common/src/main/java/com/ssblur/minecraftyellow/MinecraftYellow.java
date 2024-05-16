@@ -1,6 +1,8 @@
 package com.ssblur.minecraftyellow;
 
 import com.google.common.base.Suppliers;
+import com.ssblur.minecraftyellow.block.MinecraftYellowBlocks;
+import com.ssblur.minecraftyellow.blockentity.MinecraftYellowBlockEntities;
 import com.ssblur.minecraftyellow.event.MinecraftYellowEvents;
 import com.ssblur.minecraftyellow.event.network.MinecraftYellowNetwork;
 import com.ssblur.minecraftyellow.item.MinecraftYellowItems;
@@ -25,6 +27,8 @@ public class MinecraftYellow {
     MinecraftYellowGameRules.register();
     MinecraftYellowEvents.register();
     MinecraftYellowSounds.register();
+    MinecraftYellowBlocks.register();
     MinecraftYellowItems.register();
+    MinecraftYellowBlockEntities.register();
   }
 }
