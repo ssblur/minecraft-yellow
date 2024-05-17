@@ -19,7 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SaloonDoorBlockEntity extends BlockEntity {
-  public int delay;
+  public long delay;
   public SaloonDoorBlockEntity(BlockPos blockPos, BlockState blockState) {
     super(MinecraftYellowBlockEntities.SALOON_DOOR.get(), blockPos, blockState);
     delay = 0;
@@ -80,13 +80,11 @@ public class SaloonDoorBlockEntity extends BlockEntity {
         level.playSound(null, pos, SoundEvents.WOODEN_TRAPDOOR_OPEN, SoundSource.BLOCKS);
     }
 
-    if(swing > 0 || delay == 0)
+    if(swing > 0 || delay < level.getGameTime())
       for (var i : targets) {
         level.setBlockAndUpdate(i, level.getBlockState(i).setValue(SaloonDoor.SWING, swing));
-        if(level.getBlockEntity(i) instanceof SaloonDoorBlockEntity blockEntity) blockEntity.delay = 5;
+        if(level.getBlockEntity(i) instanceof SaloonDoorBlockEntity blockEntity) blockEntity.delay = level.getGameTime() + 5;
       }
-
-    delay = Math.max(0, delay - 1);
   }
 
   public static <T extends BlockEntity> void tick(Level level, BlockPos pos, BlockState state, T entity) {
