@@ -35,7 +35,11 @@ import net.minecraft.world.phys.shapes.CubeVoxelShape;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class SaloonDoor extends Block implements EntityBlock {
+  public static List<SaloonDoor> DOORS = new ArrayList<>();
   protected static final VoxelShape NS_AABB_BOTTOM = Block.box(6, 4, 0, 10, 16, 16);
   protected static final VoxelShape EW_AABB_BOTTOM = Block.box(0, 4, 6, 16, 16, 10);
   protected static final VoxelShape NS_AABB_TOP = Block.box(6, 0, 0, 10, 12, 16);
@@ -50,6 +54,7 @@ public class SaloonDoor extends Block implements EntityBlock {
 
     if(!Platform.isForge() && Platform.getEnv() == EnvType.CLIENT)
       RenderTypeRegistry.register(RenderType.translucent(), this);
+    DOORS.add(this);
   }
 
   public VoxelShape getShape(BlockState blockState, BlockGetter blockGetter, BlockPos blockPos, CollisionContext collisionContext) {
@@ -99,7 +104,7 @@ public class SaloonDoor extends Block implements EntityBlock {
 
       var half =  blockState.getValue(HALF);
       if(half) {
-        var itemStack = new ItemStack(MinecraftYellowItems.SALOON_DOOR.get());
+        var itemStack = new ItemStack(this);
         var center = pos.getCenter();
         var entity = new ItemEntity(level, center.x, center.y, center.z, itemStack);
         level.addFreshEntity(entity);

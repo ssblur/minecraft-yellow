@@ -3,6 +3,7 @@ package com.ssblur.minecraftyellow.item;
 import com.ssblur.minecraftyellow.MinecraftYellow;
 import com.ssblur.minecraftyellow.block.MinecraftYellowBlocks;
 import com.ssblur.minecraftyellow.item.armor.Bandana;
+import com.ssblur.minecraftyellow.item.armor.HatWIthTheBrim;
 import com.ssblur.minecraftyellow.item.armor.YellowArmorColors;
 import com.ssblur.minecraftyellow.item.armor.YellowArmorMaterials;
 import com.ssblur.minecraftyellow.item.gun.BaseGun;
@@ -45,9 +46,31 @@ public class MinecraftYellowItems {
   public static final RegistrySupplier<Item> BANDANA = ITEMS.register("bandana", () ->
     new Bandana(YellowArmorMaterials.CLOTH, ArmorItem.Type.CHESTPLATE, new Item.Properties().arch$tab(MinecraftYellowItems.TAB)));
 
+  public static final RegistrySupplier<Item> COWBOY_HAT = ITEMS.register("cowboy_hat", () ->
+    new HatWIthTheBrim(YellowArmorMaterials.COWBOY, ArmorItem.Type.HELMET, new Item.Properties().arch$tab(MinecraftYellowItems.TAB)));
 
-  public static final RegistrySupplier<Item> SALOON_DOOR = ITEMS.register("saloon_door", () ->
-    new BlockItem(MinecraftYellowBlocks.SALOON_DOOR.get(), new Item.Properties().arch$tab(MinecraftYellowItems.TAB)));
+
+  public static final RegistrySupplier<Item> OAK_SALOON_DOOR = ITEMS.register("oak_saloon_door", () ->
+    new BlockItem(MinecraftYellowBlocks.OAK_SALOON_DOOR.get(), new Item.Properties().arch$tab(MinecraftYellowItems.TAB)));
+  public static final RegistrySupplier<Item> SPRUCE_SALOON_DOOR = ITEMS.register("spruce_saloon_door", () ->
+    new BlockItem(MinecraftYellowBlocks.SPRUCE_SALOON_DOOR.get(), new Item.Properties().arch$tab(MinecraftYellowItems.TAB)));
+  public static final RegistrySupplier<Item> BIRCH_SALOON_DOOR = ITEMS.register("birch_saloon_door", () ->
+    new BlockItem(MinecraftYellowBlocks.BIRCH_SALOON_DOOR.get(), new Item.Properties().arch$tab(MinecraftYellowItems.TAB)));
+  public static final RegistrySupplier<Item> JUNGLE_SALOON_DOOR = ITEMS.register("jungle_saloon_door", () ->
+    new BlockItem(MinecraftYellowBlocks.JUNGLE_SALOON_DOOR.get(), new Item.Properties().arch$tab(MinecraftYellowItems.TAB)));
+  public static final RegistrySupplier<Item> ACACIA_SALOON_DOOR = ITEMS.register("acacia_saloon_door", () ->
+    new BlockItem(MinecraftYellowBlocks.ACACIA_SALOON_DOOR.get(), new Item.Properties().arch$tab(MinecraftYellowItems.TAB)));
+  public static final RegistrySupplier<Item> DARK_OAK_SALOON_DOOR = ITEMS.register("dark_oak_saloon_door", () ->
+    new BlockItem(MinecraftYellowBlocks.DARK_OAK_SALOON_DOOR.get(), new Item.Properties().arch$tab(MinecraftYellowItems.TAB)));
+  public static final RegistrySupplier<Item> MANGROVE_SALOON_DOOR = ITEMS.register("mangrove_saloon_door", () ->
+    new BlockItem(MinecraftYellowBlocks.MANGROVE_SALOON_DOOR.get(), new Item.Properties().arch$tab(MinecraftYellowItems.TAB)));
+  public static final RegistrySupplier<Item> CHERRY_SALOON_DOOR = ITEMS.register("cherry_saloon_door", () ->
+    new BlockItem(MinecraftYellowBlocks.CHERRY_SALOON_DOOR.get(), new Item.Properties().arch$tab(MinecraftYellowItems.TAB)));
+
+  public static final RegistrySupplier<Item> CRIMSON_SALOON_DOOR = ITEMS.register("crimson_saloon_door", () ->
+    new BlockItem(MinecraftYellowBlocks.CRIMSON_SALOON_DOOR.get(), new Item.Properties().arch$tab(MinecraftYellowItems.TAB)));
+  public static final RegistrySupplier<Item> WARPED_SALOON_DOOR = ITEMS.register("warped_saloon_door", () ->
+    new BlockItem(MinecraftYellowBlocks.WARPED_SALOON_DOOR.get(), new Item.Properties().arch$tab(MinecraftYellowItems.TAB)));
 
   public static void register() {
     ITEMS.register();

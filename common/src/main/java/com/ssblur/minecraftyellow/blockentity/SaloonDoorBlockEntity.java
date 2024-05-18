@@ -67,7 +67,7 @@ public class SaloonDoorBlockEntity extends BlockEntity {
     }
 
     if(swing > 0) {
-      if (level.getBlockState(pos.offset(facing.getNormal())).is(MinecraftYellowBlocks.SALOON_DOOR.get())) {
+      if (level.getBlockState(pos.offset(facing.getNormal())).getBlock() instanceof SaloonDoor) {
         var otherDoorPos = pos.offset(facing.getNormal());
         targets.add(otherDoorPos);
         if (level.getBlockState(otherDoorPos).getValue(SaloonDoor.HALF))

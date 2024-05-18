@@ -2,6 +2,7 @@ package com.ssblur.minecraftyellow.blockentity;
 
 import com.ssblur.minecraftyellow.MinecraftYellow;
 import com.ssblur.minecraftyellow.block.MinecraftYellowBlocks;
+import com.ssblur.minecraftyellow.block.SaloonDoor;
 import dev.architectury.registry.registries.DeferredRegister;
 import dev.architectury.registry.registries.RegistrySupplier;
 import net.minecraft.core.registries.Registries;
@@ -13,7 +14,7 @@ public class MinecraftYellowBlockEntities {
 
   public static final RegistrySupplier<BlockEntityType<SaloonDoorBlockEntity>> SALOON_DOOR = BLOCK_ENTITIES.register(
     "saloon_door",
-    () -> BlockEntityType.Builder.of(SaloonDoorBlockEntity::new, MinecraftYellowBlocks.SALOON_DOOR.get()).build(null)
+    () -> BlockEntityType.Builder.of(SaloonDoorBlockEntity::new, SaloonDoor.DOORS.toArray(new SaloonDoor[]{})).build(null)
   );
 
   public static void register() {

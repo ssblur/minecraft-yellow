@@ -6,6 +6,7 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.ArmorMaterial;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 
 import java.util.function.Supplier;
@@ -14,6 +15,10 @@ public enum YellowArmorMaterials implements ArmorMaterial {
   CLOTH(
     "cloth", 9, 15, 0.0f, 0.0f,
     () -> Ingredient.of(ItemTags.WOOL), 1, 1, 1, 1
+  ),
+  COWBOY(
+  "cowboy", 9, 15, 0.0f, 0.0f,
+    () -> Ingredient.of(Items.LEATHER), 1, 1, 1, 1
   );
 
   final String name;
