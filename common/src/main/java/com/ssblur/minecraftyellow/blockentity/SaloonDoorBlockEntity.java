@@ -50,8 +50,8 @@ public class SaloonDoorBlockEntity extends BlockEntity {
       if(Math.abs(v) > 0.1d && !i.isCrouching())
         swing = v > 0 ? 2 : 1;
 
-      if(i instanceof ServerPlayer player) {
-        float rot = (player.yBodyRot % 360 + 360) % 360;
+      if(i instanceof LivingEntity living) {
+        float rot = (living.yBodyRot % 360 + 360) % 360;
         if(!xAxis) {
           if (rot > 180)
             swing = 2;
