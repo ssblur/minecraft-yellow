@@ -82,7 +82,8 @@ public class SaloonDoorBlockEntity extends BlockEntity {
 
     if(swing > 0 || delay < level.getGameTime())
       for (var i : targets) {
-        level.setBlockAndUpdate(i, level.getBlockState(i).setValue(SaloonDoor.SWING, swing));
+        var iState = level.getBlockState(i);
+        if(iState.getBlock() instanceof SaloonDoor) level.setBlockAndUpdate(i, iState.setValue(SaloonDoor.SWING, swing));
         if(level.getBlockEntity(i) instanceof SaloonDoorBlockEntity blockEntity) blockEntity.delay = level.getGameTime() + 5;
       }
   }
