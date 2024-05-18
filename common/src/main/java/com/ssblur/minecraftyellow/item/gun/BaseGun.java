@@ -13,9 +13,12 @@ import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.damagesource.DamageSources;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.UseAnim;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.Level;
@@ -90,6 +93,7 @@ public class BaseGun extends Item {
       return;
     }
 
+    int baseAmmo = tag.getInt("ammo");
     ItemStack match = null;
     for(var item: player.getInventory().items) {
       if(ammoPredicate.test(item)) {
@@ -103,21 +107,21 @@ public class BaseGun extends Item {
       player.getCooldowns().addCooldown(this, 5);
     } else {
       level.playSound(null, player.blockPosition().above(), MinecraftYellowSounds.GUN_RELOAD.get(), SoundSource.PLAYERS);
-      int availableAmmo = Math.min(this.ammo, match.getCount());
+      int availableAmmo = Math.min(this.ammo - baseAmmo, match.getCount());
       match.shrink(availableAmmo);
-      tag.putInt("ammo", availableAmmo);
+      tag.putInt("ammo", availableAmmo + baseAmmo);
       player.getCooldowns().addCooldown(this, 60);
     }
   }
 
   @Override
   public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand interactionHand) {
+    var itemStack = player.getItemInHand(interactionHand);
     if(!level.isClientSide()) {
       if(damage > 0) {
-        var itemStack = player.getItemInHand(interactionHand);
         var tag = itemStack.getOrCreateTag();
 
-        if(tag.getInt("ammo") > 0) {
+        if(tag.getInt("ammo") > 0 && !player.isCrouching()) {
           TraceNetwork.requestTraceData(player, (type, result) -> {
             if (type == TraceNetwork.TYPE.ENTITY && result != null && result.right().isPresent()) {
               var entity = result.right().get();
@@ -129,18 +133,19 @@ public class BaseGun extends Item {
             level.playSound(null, player.blockPosition().above(), sounds.get(RANDOM.nextInt(sounds.size())), SoundSource.PLAYERS);
 
           var ang = player.getLookAngle();
-          var pos = ang.normalize().scale(0.6d).add(player.blockPosition().above().getCenter());
+          var pos = ang.normalize().add(player.blockPosition().above().getCenter());
           ParticleNetwork.sendSmokeParticles((ServerLevel) level, pos);
 
           tag.putInt("ammo", tag.getInt("ammo") - 1);
           player.getCooldowns().addCooldown(this, 15);
           if(tag.getInt("ammo") <= 0)
             reload(level, player, itemStack);
-        } else {
+        } else if(tag.getInt("ammo") < ammo) {
           reload(level, player, itemStack);
         }
       }
     }
-    return super.use(level, player, interactionHand);
+
+    return InteractionResultHolder.success(itemStack);
   }
 }
