@@ -1,0 +1,7 @@
+Pillagers that spawn in with revolvers and black cowboy hats
+    Quick Draw [name]
+        McGraw
+        Shaw
+        Big Law
+        Jaw
+    Slow Draw Stew
