@@ -8,10 +8,13 @@ import com.ssblur.minecraftyellow.event.network.MinecraftYellowNetwork;
 import com.ssblur.minecraftyellow.item.MinecraftYellowItems;
 import com.ssblur.minecraftyellow.item.gun.BaseGun;
 import com.ssblur.minecraftyellow.sound.MinecraftYellowSounds;
+import dev.architectury.platform.Platform;
 import dev.architectury.registry.CreativeTabRegistry;
+import dev.architectury.registry.client.level.entity.EntityModelLayerRegistry;
 import dev.architectury.registry.registries.DeferredRegister;
 import dev.architectury.registry.registries.RegistrarManager;
 import dev.architectury.registry.registries.RegistrySupplier;
+import net.fabricmc.api.EnvType;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.CreativeModeTab;
@@ -30,5 +33,9 @@ public class MinecraftYellow {
     MinecraftYellowBlocks.register();
     MinecraftYellowItems.register();
     MinecraftYellowBlockEntities.register();
+
+    if(Platform.getEnv() == EnvType.CLIENT) {
+
+    }
   }
 }

@@ -12,4 +12,8 @@ public class MinecraftYellowExpectPlatformImpl {
   public static Path getConfigDirectory() {
     return FMLPaths.CONFIGDIR.get();
   }
+
+  public static void registerItems() {
+
+  }
 }

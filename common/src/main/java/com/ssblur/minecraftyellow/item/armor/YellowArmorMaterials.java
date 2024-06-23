@@ -17,8 +17,12 @@ public enum YellowArmorMaterials implements ArmorMaterial {
     () -> Ingredient.of(ItemTags.WOOL), 1, 1, 1, 1
   ),
   COWBOY(
-  "cowboy", 9, 15, 0.0f, 0.0f,
-    () -> Ingredient.of(Items.LEATHER), 1, 1, 1, 1
+  "cowboy", 9, 18, 0.0f, 0.0f,
+    () -> Ingredient.of(Items.LEATHER), 3, 5, 4, 2
+  ),
+  THE_DIMMADOME(
+    "the_dimmadome", 18, 18, 0.0f, 0.0f,
+    () -> Ingredient.of(Items.LEATHER), 3, 5, 4, 2
   );
 
   final String name;

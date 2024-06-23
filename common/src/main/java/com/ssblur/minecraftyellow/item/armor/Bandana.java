@@ -12,6 +12,6 @@ public class Bandana extends DyeableArmorItem {
 
   public int getColor(ItemStack itemStack) {
     CompoundTag compoundTag = itemStack.getTagElement("display");
-    return compoundTag != null && compoundTag.contains("color", 99) ? compoundTag.getInt("color") : 0x212F65FF;
+    return compoundTag != null && compoundTag.contains("color", 99) ? compoundTag.getInt("color") : 0x212FA5;
   }
 }

@@ -2,6 +2,10 @@ plugins {
   id "com.github.johnrengelman.shadow" version "7.1.2"
 }
 
+repositories {
+  maven { url "https://dl.cloudsmith.io/public/geckolib3/geckolib/maven/" }
+}
+
 architectury {
   platformSetupLoomIde()
   fabric()
@@ -24,6 +28,8 @@ dependencies {
   modApi "net.fabricmc.fabric-api:fabric-api:${rootProject.fabric_api_version}"
   // Remove the next line if you don't want to depend on the API
   modApi "dev.architectury:architectury-fabric:${rootProject.architectury_version}"
+
+  modImplementation "software.bernie.geckolib:geckolib-fabric-${rootProject.minecraft_version}:4.4.4"
 
   common(project(path: ":common", configuration: "namedElements")) { transitive false }
   shadowCommon(project(path: ":common", configuration: "transformProductionFabric")) { transitive false }

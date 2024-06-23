@@ -1,9 +1,10 @@
 package com.ssblur.minecraftyellow.item;
 
 import com.ssblur.minecraftyellow.MinecraftYellow;
+import com.ssblur.minecraftyellow.MinecraftYellowExpectPlatform;
 import com.ssblur.minecraftyellow.block.MinecraftYellowBlocks;
 import com.ssblur.minecraftyellow.item.armor.Bandana;
-import com.ssblur.minecraftyellow.item.armor.HatWIthTheBrim;
+import com.ssblur.minecraftyellow.item.armor.HatWithTheBrim;
 import com.ssblur.minecraftyellow.item.armor.YellowArmorColors;
 import com.ssblur.minecraftyellow.item.armor.YellowArmorMaterials;
 import com.ssblur.minecraftyellow.item.gun.BaseGun;
@@ -14,7 +15,6 @@ import dev.architectury.registry.client.rendering.ColorHandlerRegistry;
 import dev.architectury.registry.registries.DeferredRegister;
 import dev.architectury.registry.registries.RegistrySupplier;
 import net.fabricmc.api.EnvType;
-import net.minecraft.client.color.item.ItemColors;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.*;
@@ -25,9 +25,10 @@ public class MinecraftYellowItems {
   public static final DeferredRegister<CreativeModeTab> TABS = DeferredRegister.create(MOD_ID, Registries.CREATIVE_MODE_TAB);
   public static final RegistrySupplier<CreativeModeTab> TAB = TABS.register("items", () ->
     CreativeTabRegistry.create(Component.translatable("itemGroup." + MOD_ID + ".items"),
-      () -> new ItemStack(MinecraftYellowItems.TOY_GUN.get())));
+      () -> new ItemStack(MinecraftYellowItems.COWBOY_HAT.get())));
 
   public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(MOD_ID, Registries.ITEM);
+  public static final Item.Properties TAB_PROPERTIES = new Item.Properties().arch$tab(MinecraftYellowItems.TAB);
 
   public static final RegistrySupplier<Item> TOY_GUN = ITEMS.register("toy_gun", () ->
     new BaseGun(new Item.Properties().arch$tab(MinecraftYellowItems.TAB), 1, 6)
@@ -46,8 +47,8 @@ public class MinecraftYellowItems {
   public static final RegistrySupplier<Item> BANDANA = ITEMS.register("bandana", () ->
     new Bandana(YellowArmorMaterials.CLOTH, ArmorItem.Type.CHESTPLATE, new Item.Properties().arch$tab(MinecraftYellowItems.TAB)));
 
-  public static final RegistrySupplier<Item> COWBOY_HAT = ITEMS.register("cowboy_hat", () ->
-    new HatWIthTheBrim(YellowArmorMaterials.COWBOY, ArmorItem.Type.HELMET, new Item.Properties().arch$tab(MinecraftYellowItems.TAB)));
+  public static RegistrySupplier<HatWithTheBrim> COWBOY_HAT;
+  public static RegistrySupplier<Item> THE_DIMMADOME;
 
 
   public static final RegistrySupplier<Item> OAK_SALOON_DOOR = ITEMS.register("oak_saloon_door", () ->
@@ -76,8 +77,11 @@ public class MinecraftYellowItems {
     ITEMS.register();
     TABS.register();
 
+
+    MinecraftYellowExpectPlatform.registerItems();
     if(Platform.getEnv() == EnvType.CLIENT) {
       ColorHandlerRegistry.registerItemColors(new YellowArmorColors(), BANDANA);
+      ColorHandlerRegistry.registerItemColors(new YellowArmorColors(), COWBOY_HAT);
     }
   }
 }
